@@ -53,11 +53,19 @@ export default function Api(){
   const [response, setRes] = React.useState('<h1>No Response Yet</h1>');
   
   const GetRequest = () => {
-   
+   axios.get(url, json).then(
+       res => setRes(res)
+     ).catch(
+       error => setRes(error)
+       );
   }
   
   const PostRequest = () => {
-    
+   axios.post(url, json).then(
+       res => setRes(res)
+     ).catch(
+       error => setRes(error)
+       );
   }
   return(
   <>
@@ -89,7 +97,7 @@ export default function Api(){
           />
         </View>
         <ScrollView>
-          <WebView style={{padding: 10}} source={{html: response}} style={styles.rs} />
+          <WebView style={{margin: 10, padding: 4}} source={{html: response+'<meta name="viewport" content="width=device-width, initial-scale=1">'}} style={styles.rs} />
         </ScrollView>
       </ScrollView>
       </SafeAreaView>
